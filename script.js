@@ -1,21 +1,5 @@
 let speedMultiplier = 1;
-
-function generateRandomFileName() {
-    const words = ['report', 'invoice', 'summary', 'data', 'notes', 'task', 'plan', 'design', 'project', 'analysis'];
-    const ext = ['txt', 'pdf', 'docx', 'xlsx', 'ppt', 'jpg', 'png', 'csv', 'md', 'json'];
-    const word = words[Math.floor(Math.random() * words.length)];
-    const number = Math.floor(Math.random() * 1000);
-    const extension = ext[Math.floor(Math.random() * ext.length)];
-    return `${word}-${number}.${extension}`;
-}
-
-function generateFileNames() {
-    const pool = [];
-    for (let i = 0; i < 60; i++) {
-        pool.push(generateRandomFileName());
-    }
-    return pool.sort(() => 0.5 - Math.random()).slice(0, 30);
-}
+let fileNames = [];
 
 function displayFileNames(fileNames) {
     const container = document.getElementById('file-names');
@@ -42,7 +26,6 @@ function changeSpeed(multiplier) {
     updateNarration(`Speed: ${multiplier}x`);
     setTimeout(() => updateNarration("Click 'Start Visualization' to begin sorting."), 3000); // Hides the speed narration after 3 seconds
 }
-
 
 async function heapify(arr, n, i, visualize) {
     let largest = i;
@@ -120,8 +103,17 @@ async function visualizeSorting(arr, index1, index2, isSorted = false) {
     fileElements[index2]?.classList.remove('highlight');
 }
 
+function handleFileUpload(event) {
+    const files = event.target.files;
+    fileNames = Array.from(files).map(file => file.name);
+    displayFileNames(fileNames);
+}
+
 async function startVisualization() {
-    const fileNames = generateFileNames();
+    if (fileNames.length === 0) {
+        updateNarration('No files to sort. Please upload files.');
+        return;
+    }
     displayFileNames(fileNames);
     
     await sleep(1000);
@@ -129,7 +121,5 @@ async function startVisualization() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const fileNames = generateFileNames();
-    displayFileNames(fileNames);
     updateNarration(`Click "Start Visualization" to begin sorting.`);
 });
