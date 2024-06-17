@@ -3,6 +3,7 @@ let fileNames = [];
 
 function displayFileNames(fileNames) {
     const container = document.getElementById('file-names');
+    container.classList.remove('placeholder');
     container.innerHTML = '';
     fileNames.forEach(name => {
         const div = document.createElement('div');

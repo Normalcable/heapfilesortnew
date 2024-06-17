@@ -1,12 +1,12 @@
 body {
-    background: linear-gradient(to bottom, #f2f2f2, #d9d9d9); /* Gradient background */
+    background: linear-gradient(to bottom, #f2f2f2, #d9d9d9);
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
 header {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow for header */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .container {
@@ -30,10 +30,35 @@ header h1 {
 }
 
 .highlight {
-    background-color: rgba(255, 255, 0, 0.5); /* Yellow highlight with transparency */
+    background-color: rgba(255, 255, 0, 0.5);
     transform: scale(1.2);
 }
 
 .sorted {
-    background-color: rgba(144, 238, 144, 0.5); /* Light green with transparency */
+    background-color: rgba(144, 238, 144, 0.5);
 }
+
+.placeholder {
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #ccc;
+}
+
+.placeholder-content {
+    color: #777;
+    position: relative;
+}
+
+.placeholder-content img {
+    width: 50%;
+    height: auto;
+    opacity: 0.6;
+    margin: 0 auto;
+    display: block;
+}
+
+#file-names  {
+    background-color: transparent;
+  }
