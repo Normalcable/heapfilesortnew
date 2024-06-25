@@ -24,9 +24,9 @@
                 </select>
                 <label for="mode" class="mr-3">Mode:</label>
                 <select id="mode" class="form-control form-control-sm mr-3" onchange="changeMode(this.value)">
-                    <option value="fileNames" selected>File Names</option>
-                    <option value="elements">Elements</option>
-                </select>
+                    <option value="FileNames" selected>File Names</option>                   
+                    <option value="Elements">Elements</option>
+                </select>      
                 <button id="choose-files-btn" class="btn btn-primary btn-sm mr-3" onclick="document.getElementById('file-input').click()">Choose Files</button>
                 <input type="file" id="file-input" multiple class="d-none" onchange="handleFileUpload(event)">
                 <button class="btn btn-primary btn-sm mr-3" onclick="startVisualization()">Start Visualization</button>

@@ -1,3 +1,49 @@
+/* General Styles */
+body {
+    background: linear-gradient(to bottom, #f2f2f2, #d9d9d9);
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+header {
+    background-color: #343a40; /* Dark background color */
+    color: white; /* Light text color */
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#controls {
+    display: flex;
+    align-items: center;
+}
+
+#controls label {
+    margin-right: 10px;
+}
+
+#narration {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+/* Element Display */
 .element-displayed {
     display: inline-block;
     padding: 10px;
@@ -5,32 +51,51 @@
     border: 1px solid #ccc;
     transition: transform 0.2s, background-color 0.2s;
     white-space: nowrap;
+    background-color: #ffffff; /* White background */
 }
 
+
 .element-displayed.highlight {
-    background-color: #ffc107;
+    background-color: rgba(255, 255, 0, 0.5); /* Yellow highlight */
+    transform: scale(1.2); /* Larger scale on highlight */
 }
 
 .placeholder {
     min-height: 200px;
-    border: 2px dashed #aaa;
+    border: 2px dashed #ccc;
     border-radius: 5px;
-    padding: 20px;
-    margin-top: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    margin-top: 20px;
+    background-color: #f8f9fa; /* Light gray background */
+    color: #777; /* Gray text color */
 }
 
 .placeholder-content {
-    opacity: 0.5;
+    text-align: center;
+    opacity: 0.7;
 }
 
 #element-buttons {
     margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 #element-buttons .btn {
     font-size: 1.2rem;
+    margin: 5px;
+}
+
+.sorted {
+    background-color: rgba(144, 238, 144, 0.5); /* Light green background for sorted elements */
+}
+
+/* Additional Classes */
+.disabled {
+    opacity: 0.6; /* Reduced opacity for disabled elements */
+    pointer-events: none; /* Prevents mouse events on disabled elements */
+    /* Add any other styles to visually indicate disabled state */
 }

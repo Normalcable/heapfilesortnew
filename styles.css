@@ -23,12 +23,10 @@ header h1 {
 }
 
 .file-name {
-    display: inline-block; /* Display elements inline */
     padding: 10px;
     margin: 5px;
     border: 1px solid #ccc;
     transition: transform 0.2s, background-color 0.2s;
-    white-space: nowrap; /* Prevent wrapping to next line */
 }
 
 .highlight {
@@ -53,15 +51,28 @@ header h1 {
     position: relative;
 }
 
-#file-names, #elements {
+.placeholder-content img {
+    width: 50%;
+    height: auto;
+    opacity: 0.6;
+    margin: 0 auto;
+    display: block;
+}
+
+#file-names {
     background-color: transparent;
 }
 
-#file-input {
-    display: none;
+button:active,
+button:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: #0056b3;
 }
 
-.d-none {
-    display: none!important;
+button:disabled {
+    opacity: 0.6;
+    pointer-events: none;
+    background-color: #6c757d; /* Optional: grey out disabled buttons */
+    border-color: #6c757d; /* Optional: grey out disabled buttons */
 }
-    

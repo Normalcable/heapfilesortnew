@@ -3,16 +3,14 @@ let elements = [];
 let isSorting = false;
 
 function displayElements(elements) {
-    const container = document.getElementById('selected-elements');
+    const container = document.getElementById('element-names');
     container.innerHTML = ''; // Clear previous content
     elements.forEach(element => {
         const div = document.createElement('div');
-        div.className = 'element-displayed mx-2';
+        div.className = 'element-displayed'; // Ensure this class matches your CSS
         div.textContent = element;
         container.appendChild(div);
     });
-    container.classList.remove('d-none');
-    document.getElementById('element-names').classList.add('d-none'); // Hide placeholder
 }
 
 function addElement(element) {
@@ -28,22 +26,6 @@ function updateNarration(text) {
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms / speedMultiplier));
-}
-
-function changeSpeed(multiplier) {
-    speedMultiplier = multiplier;
-    updateNarration(`Speed: ${multiplier}x`);
-    setTimeout(() => updateNarration("Click 'Start Visualization' to begin sorting."), 3000);
-}
-
-function removeAllItems() {
-    if (isSorting) return;
-
-    elements = [];
-    displayElements(elements);
-    document.getElementById('selected-elements').classList.add('d-none'); // Hide selected elements
-    document.getElementById('element-names').classList.remove('d-none'); // Show placeholder
-    updateNarration("All items removed.");
 }
 
 async function heapify(arr, n, i) {
@@ -94,18 +76,18 @@ async function heapSort(arr) {
 }
 
 async function visualizeSorting(arr, index1, index2) {
-    const container = document.getElementById('selected-elements');
-    const elementDivs = container.children;
+    const container = document.getElementById('element-names');
+    const fileElements = container.children;
 
-    elementDivs[index1]?.classList.add('highlight');
-    elementDivs[index2]?.classList.add('highlight');
+    fileElements[index1]?.classList.add('highlight');
+    fileElements[index2]?.classList.add('highlight');
 
     await sleep(500);
 
     container.innerHTML = '';
     arr.forEach((element, index) => {
         const div = document.createElement('div');
-        div.className = 'element-displayed';
+        div.className = 'element-displayed'; // Ensure this class matches your CSS
         div.textContent = element;
         if (index === index1 || index === index2) {
             div.classList.add('highlight');
@@ -115,27 +97,14 @@ async function visualizeSorting(arr, index1, index2) {
 
     await sleep(500);
 
-    elementDivs[index1]?.classList.remove('highlight');
-    elementDivs[index2]?.classList.remove('highlight');
+    fileElements[index1]?.classList.remove('highlight');
+    fileElements[index2]?.classList.remove('highlight');
 }
 
-async function startVisualization() {
-    if (isSorting) return;
-
-    if (elements.length === 0) {
-        updateNarration('No elements to sort. Please select elements.');
-        return;
-    }
-
-    isSorting = true;
-    disableControls(true);
-
-    displayElements(elements);
-    await sleep(1000);
-    await heapSort(elements);
-
-    isSorting = false;
-    disableControls(false);
+function changeSpeed(multiplier) {
+    speedMultiplier = multiplier;
+    updateNarration(`Speed: ${multiplier}x`);
+    setTimeout(() => updateNarration("Click 'Start Visualization' to begin sorting."), 3000);
 }
 
 function disableControls(disabled) {
@@ -143,6 +112,35 @@ function disableControls(disabled) {
     controls.forEach(control => {
         control.disabled = disabled;
     });
+}
+
+function removeAllItems() {
+    if (isSorting) return;
+
+    elements = [];
+    displayElements(elements);
+    updateNarration("All items removed.");
+}
+
+async function startVisualization() {
+    if (isSorting) return;
+
+    isSorting = true;
+    disableControls(true);
+
+    if (elements.length === 0) {
+        updateNarration('No elements to sort. Please select elements.');
+        isSorting = false;
+        disableControls(false);
+        return;
+    }
+
+    displayElements(elements);
+    await sleep(1000);
+    await heapSort(elements);
+
+    isSorting = false;
+    disableControls(false);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
