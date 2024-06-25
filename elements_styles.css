@@ -20,13 +20,12 @@ header {
 
 header h1 {
     margin: 0;
-    font-size: 2rem;
 }
 
 header .container {
-    display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0 20px; /* Adjust padding as needed */
 }
 
 #controls {
@@ -36,11 +35,43 @@ header .container {
 
 #controls label {
     margin-right: 10px;
+    color: #ffffff; /* White text color for labels */
 }
 
-#narration {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
+#controls select,
+#controls button {
+    margin-right: 10px;
+}
+
+#controls select {
+    background-color: #ffffff; /* White background for selects */
+    color: #343a40; /* Dark text color for selects */
+    border: 1px solid #ced4da; /* Border color */
+    padding: 5px 10px; /* Adjust padding as needed */
+}
+
+#controls button {
+    background-color: #007bff; /* Primary button color */
+    border-color: #007bff; /* Button border color */
+    color: #ffffff; /* Button text color */
+    padding: 5px 10px; /* Adjust padding as needed */
+}
+
+#controls button:hover {
+    background-color: #0069d9; /* Hover state color */
+    border-color: #0062cc; /* Hover state border color */
+}
+
+#controls .btn-danger {
+    background-color: #dc3545; /* Danger button color */
+    border-color: #dc3545; /* Button border color */
+    color: #ffffff; /* Button text color */
+    padding: 5px 10px; /* Adjust padding as needed */
+}
+
+#controls .btn-danger:hover {
+    background-color: #c82333; /* Hover state color */
+    border-color: #bd2130; /* Hover state border color */
 }
 
 /* Element Display */
@@ -53,7 +84,6 @@ header .container {
     white-space: nowrap;
     background-color: #ffffff; /* White background */
 }
-
 
 .element-displayed.highlight {
     background-color: rgba(255, 255, 0, 0.5); /* Yellow highlight */
