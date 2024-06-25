@@ -4,40 +4,40 @@ body {
     margin: 0;
     padding: 0;
 }
-
+  
 header {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
+  
 .container {
     max-width: 800px;
     margin: 0 auto;
 }
-
+  
 header h1 {
     margin: 0;
 }
-
+  
 #narration {
     font-size: 18px;
 }
-
+  
 .file-name {
     padding: 10px;
     margin: 5px;
     border: 1px solid #ccc;
     transition: transform 0.2s, background-color 0.2s;
 }
-
+  
 .highlight {
     background-color: rgba(255, 255, 0, 0.5);
     transform: scale(1.2);
 }
-
+  
 .sorted {
     background-color: rgba(144, 238, 144, 0.5);
 }
-
+  
 .placeholder {
     min-height: 200px;
     display: flex;
@@ -45,12 +45,12 @@ header h1 {
     align-items: center;
     border: 2px dashed #ccc;
 }
-
+  
 .placeholder-content {
     color: #777;
     position: relative;
 }
-
+  
 .placeholder-content img {
     width: 50%;
     height: auto;
@@ -58,7 +58,15 @@ header h1 {
     margin: 0 auto;
     display: block;
 }
-
-#file-names  {
+  
+#file-names, #elements {
     background-color: transparent;
-  }
+}
+  
+#file-input {
+    display: none;
+}
+
+.d-none {
+    display: none !important;
+}

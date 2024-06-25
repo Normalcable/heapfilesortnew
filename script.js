@@ -1,5 +1,7 @@
 let speedMultiplier = 1;
 let fileNames = [];
+let elements = [];
+let mode = 'fileNames';
 
 function displayFileNames(fileNames) {
     const container = document.getElementById('file-names');
@@ -9,6 +11,18 @@ function displayFileNames(fileNames) {
         const div = document.createElement('div');
         div.className = 'file-name';
         div.textContent = name;
+        container.appendChild(div);
+    });
+}
+
+function displayElements(elements) {
+    const container = document.getElementById('file-names');
+    container.classList.remove('placeholder');
+    container.innerHTML = '';
+    elements.forEach(element => {
+        const div = document.createElement('div');
+        div.className = 'file-name';
+        div.textContent = element;
         container.appendChild(div);
     });
 }
@@ -26,6 +40,46 @@ function changeSpeed(multiplier) {
     speedMultiplier = multiplier;
     updateNarration(`Speed: ${multiplier}x`);
     setTimeout(() => updateNarration("Click 'Start Visualization' to begin sorting."), 3000); // Hides the speed narration after 3 seconds
+}
+
+function changeMode(selectedMode) {
+    mode = selectedMode;
+    if (mode === 'fileNames') {
+        document.getElementById('file-input').classList.remove('d-none');
+        document.getElementById('elements').classList.add('d-none');
+        document.getElementById('mode').classList.remove('d-none'); // Ensure mode select is visible
+    } else {
+        document.getElementById('file-input').classList.add('d-none');
+        document.getElementById('elements').classList.remove('d-none');
+        displayElementButtons();
+    }
+    
+    // Hide the mode select when mode is not 'elements'
+    if (mode !== 'elements') {
+        document.getElementById('mode').classList.add('d-none');
+    } else {
+        document.getElementById('mode').classList.remove('d-none');
+    }
+    
+    resetVisualization();
+}
+
+
+function displayElementButtons() {
+    const container = document.getElementById('element-buttons');
+    container.innerHTML = '';
+    for (let i = 1; i <= 9; i++) {
+        const button = document.createElement('button');
+        button.className = 'btn btn-secondary m-1';
+        button.textContent = i;
+        button.onclick = () => addElement(i);
+        container.appendChild(button);
+    }
+}
+
+function addElement(element) {
+    elements.push(element);
+    displayElements(elements);
 }
 
 async function heapify(arr, n, i, visualize) {
@@ -110,15 +164,32 @@ function handleFileUpload(event) {
     displayFileNames(fileNames);
 }
 
+function resetVisualization() {
+    const container = document.getElementById('file-names');
+    container.classList.add('placeholder');
+    container.innerHTML = '<div class="placeholder-content text-center"><p>No files uploaded. Please select files to visualize the sorting process.</p></div>';
+    fileNames = [];
+    elements = [];
+}
+
 async function startVisualization() {
-    if (fileNames.length === 0) {
-        updateNarration('No files to sort. Please upload files.');
-        return;
+    if (mode === 'fileNames') {
+        if (fileNames.length === 0) {
+            updateNarration('No files to sort. Please upload files.');
+            return;
+        }
+        displayFileNames(fileNames);
+        await sleep(1000);
+        await heapSort(fileNames, visualizeSorting);
+    } else {
+        if (elements.length === 0) {
+            updateNarration('No elements to sort. Please select elements.');
+            return;
+        }
+        displayElements(elements);
+        await sleep(1000);
+        await heapSort(elements, visualizeSorting);
     }
-    displayFileNames(fileNames);
-    
-    await sleep(1000);
-    await heapSort(fileNames, visualizeSorting);
 }
 
 document.addEventListener('DOMContentLoaded', () => {

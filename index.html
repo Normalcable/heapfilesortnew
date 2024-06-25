@@ -1,40 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Name Sorting Visualization</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Name Sorting Visualization</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header class="bg-dark text-light py-3">
-        <div class="container">
-            <h1 class="mb-0">File Name Heap Sorting Visualization</h1>
-            <div id="controls" class="d-flex align-items-center">
-                <label for="speed" class="mr-3">Speed:</label>
-                <select id="speed" class="form-control form-control-sm mr-3" onchange="changeSpeed(this.value)">
-                    <option value="0.25">0.25x</option>
-                    <option value="0.5">0.5x</option>
-                    <option value="0.75">0.75x</option>
-                    <option value="1" selected>1x</option>
-                    <option value="2">2x</option>
-                    <option value="5">5x</option>
-                    <option value="10">10x</option>
-                </select>
-                <input type="file" id="file-input" multiple class="form-control form-control-sm mr-3" onchange="handleFileUpload(event)">
-                <button class="btn btn-primary btn-sm" onclick="startVisualization()">Start Visualization</button>
-            </div>
+  <header class="bg-dark text-light py-3">
+    <div class="container">
+      <h1 class="mb-0">Heap Sorting Visualization</h1>
+      <div id="controls" class="d-flex align-items-center">
+        <label for="speed" class="mr-3">Speed:</label>
+        <select id="speed" class="form-control form-control-sm mr-3" onchange="changeSpeed(this.value)">
+          <option value="0.25">0.25x</option>
+          <option value="0.5">0.5x</option>
+          <option value="0.75">0.75x</option>
+          <option value="1" selected>1x</option>
+          <option value="2">2x</option>
+          <option value="5">5x</option>
+          <option value="10">10x</option>
+        </select>
+        <label for="mode" class="mr-3">Mode:</label>
+        <select id="mode" class="form-control form-control-sm mr-3" onchange="changeMode(this.value)">
+          <option value="fileNames" selected>File Names</option>
+          <option value="elements">Elements</option>
+        </select>
+        <button id="choose-files-btn" class="btn btn-primary btn-sm mr-3" onclick="document.getElementById('file-input').click()">Choose Files</button>
+        <input type="file" id="file-input" multiple class="d-none" onchange="handleFileUpload(event)">
+        <button class="btn btn-primary btn-sm" onclick="startVisualization()">Start Visualization</button>
+      </div>
+    </div>
+  </header>
+  <main class="bg-light py-5">
+    <div class="container">
+      <div id="narration" class="mb-4 text-center">Click "Start Visualization" to begin sorting.</div>
+      <div id="file-names" class="d-flex flex-wrap justify-content-center align-items-center placeholder">
+        <div class="placeholder-content text-center">
+          <p>No files uploaded. Please select files to visualize the sorting process.</p>
         </div>
-    </header>
-    <main class="bg-light py-5">
-        <div class="container">
-            <div id="narration" class="mb-4 text-center">Click "Start Visualization" to begin sorting.</div>
-            <div id="file-names" class="d-flex flex-wrap justify-content-center align-items-center placeholder">
-                <div class="placeholder-content text-center">
-                    <p>No files uploaded. Please select files to visualize the sorting process.</p>
-                </div>
-    </main>
-         <script src="script.js"></script>
+      </div>
+      <div id="elements" class="d-flex flex-wrap justify-content-center align-items-center placeholder d-none">
+        <div class="placeholder-content text-center">
+          <p>Select elements by clicking the buttons below:</p>
+          <div id="element-buttons" class="d-flex justify-content-center flex-wrap">
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="script.js"></script>
 </body>
 </html>
