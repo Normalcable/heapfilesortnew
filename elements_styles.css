@@ -1,0 +1,36 @@
+.element-displayed {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    transition: transform 0.2s, background-color 0.2s;
+    white-space: nowrap;
+}
+
+.element-displayed.highlight {
+    background-color: #ffc107;
+}
+
+.placeholder {
+    min-height: 200px;
+    border: 2px dashed #aaa;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.placeholder-content {
+    opacity: 0.5;
+}
+
+#element-buttons {
+    margin-top: 20px;
+}
+
+#element-buttons .btn {
+    font-size: 1.2rem;
+}
